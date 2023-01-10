@@ -1,3 +1,7 @@
+# Dante's JS Refresher
+
+Just a little code doodle going through the entirety of full stack web development.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
