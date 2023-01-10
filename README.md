@@ -1,5 +1,4 @@
-# Dante's JS Refresher
-
+# Dante's JS Refresher 🌟新年ド派手スペシャル！✨
 Just a little code doodle going through the entirety of full stack web development.
 
 # Getting Started with Create React App
