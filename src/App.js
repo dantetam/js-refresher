@@ -4,6 +4,7 @@ import './App.css';
 import MyAddingCounter from './MyAddingCounter.js';
 import MyHttpRequester from './MyHttpRequester.js';
 import MyPromiseComp from './MyPromiseComp.js';
+import MiniCactpotSolver from './MiniCactpotSolver.js';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <MyHttpRequester />
         <hr />
         <MyPromiseComp />
+        <MiniCactpotSolver rows={3} cols={3} />
       </header>
     </div>
   );
