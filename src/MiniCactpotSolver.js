@@ -1,15 +1,23 @@
 import React from "react";
 
+function isNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
 class MiniCactpotSolver extends React.Component {
 
   constructor(props) {
     super(props);
 
+    let remainingNums = {};
+
     let nums = this.props.nums;
     if (nums === undefined) {
       nums = Array(this.props.rows * this.props.cols).fill(0);
       nums = nums.map((elem, index) => {
-        return index + 1;
+        remainingNums[index + 1] = true;
       });
     }
 
@@ -17,7 +25,7 @@ class MiniCactpotSolver extends React.Component {
       rows: this.props.rows,
       cols: this.props.cols,
       grid: Array(this.props.rows).fill(0).map(x => Array(this.props.cols).fill(null)),
-      remainingNums: nums
+      remainingNums: remainingNums
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,8 +33,7 @@ class MiniCactpotSolver extends React.Component {
 
   render() {
     return (<div>
-        Here: <br/>
-        <input type="text" onChange={(e) => this.handleChange(e, 1, 2)} />
+        Here: <br />
 
         Board: <br />
         { this.getBoard() }
@@ -42,7 +49,10 @@ class MiniCactpotSolver extends React.Component {
         if (str === null) {
           str = "Hidden"
         }
-        cols.push(<td>{str}</td>);
+
+        let input = <input type="text" value={str} onChange={(e) => this.handleChange(e, i, j)} />
+
+        cols.push(<td>{input}</td>);
       }
       rows.push(<tr>{cols}</tr>);
     }
@@ -62,9 +72,19 @@ class MiniCactpotSolver extends React.Component {
 
   handleChange(event, row, col) {
     if (event.target !== undefined) {
-      console.log("item: " + event.target.value);
-      console.log(row);
-
+      console.log("event: " + event.target.value + " " + row + " " + col);
+      let newTile = event.target.value;
+      if (isNumeric(newTile)) {
+        newTile = Number(newTile);
+        if (this.state.remainingNums[newTile]) {
+          this.setState(function(prevState) {
+            let newBoard = {...prevState.grid};
+            newBoard[row][col] = newTile;
+            prevState.remainingNums[newTile] = undefined;
+            return {...prevState, grid: newBoard};
+          });
+        };
+      }
     }
   }
 
