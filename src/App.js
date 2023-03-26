@@ -5,6 +5,8 @@ import MyAddingCounter from './MyAddingCounter.js';
 import MyHttpRequester from './MyHttpRequester.js';
 import MyPromiseComp from './MyPromiseComp.js';
 import MiniCactpotSolver from './MiniCactpotSolver.js';
+import MyListCounterThing from './MyListCounterThing.js';
+import MyColorChangingElement from './MyColorChangingElement.js';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <hr />
         <MyPromiseComp />
         <MiniCactpotSolver rows={3} cols={3} />
+        <MyListCounterThing />
+        <MyColorChangingElement rows={9} />
       </header>
     </div>
   );

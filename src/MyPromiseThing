@@ -1,0 +1,20 @@
+import React from "react";
+
+class MyPromiseThing extends React.Component {
+
+   let myPromise = new Promise(function(resolve, reject) {
+      setTimeout(1500);
+      
+      if (fine) resolve("true")
+      else if (great) resolve("great")
+      else reject(true);
+   });
+
+   myPromise.then(
+    function(input) {...},
+    function(input) {...}
+   );
+
+}
+
+export default MyPromiseThing;
